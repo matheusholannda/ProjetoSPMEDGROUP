@@ -12541,11 +12541,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\35711103822\\source\\repos\\SPMedGroup\\SPMedGroup\\SPMedGroup.csproj",
+      "projectUniqueName": "C:\\Users\\35711103822\\Desktop\\ProjetoSPMEDGROUP\\SPMedGroup\\SPMedGroup\\SPMedGroup.csproj",
       "projectName": "SPMedGroup",
-      "projectPath": "C:\\Users\\35711103822\\source\\repos\\SPMedGroup\\SPMedGroup\\SPMedGroup.csproj",
+      "projectPath": "C:\\Users\\35711103822\\Desktop\\ProjetoSPMEDGROUP\\SPMedGroup\\SPMedGroup\\SPMedGroup.csproj",
       "packagesPath": "C:\\Users\\35711103822\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\35711103822\\source\\repos\\SPMedGroup\\SPMedGroup\\obj\\",
+      "outputPath": "C:\\Users\\35711103822\\Desktop\\ProjetoSPMEDGROUP\\SPMedGroup\\SPMedGroup\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"

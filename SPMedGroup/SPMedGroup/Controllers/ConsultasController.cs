@@ -1,7 +1,7 @@
 ﻿using System;
-using System.Collections.Generic;
+using System.IdentityModel.Tokens.Jwt;
 using System.Linq;
-using System.Threading.Tasks;
+using System.Security.Claims;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -46,6 +46,35 @@ namespace SPMedGroup.Controllers
             {
                 ConsultaRepository.Atualizar(consulta);
                 return Ok();
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
+        }
+
+        [Authorize]
+        [HttpGet]
+        public IActionResult Listar()
+        {
+            try
+            {
+                int id = Convert.ToInt32(HttpContext.User.Claims.First(x => x.Type == JwtRegisteredClaimNames.Jti).Value);
+
+                string Role = HttpContext.User.Claims.First(x => x.Type == ClaimTypes.Role).Value;
+                
+                if (Role == "MEDICO")
+                {
+                    return Ok(ConsultaRepository.ListarConsultasMed(id));
+                }
+                else if (Role == "PACIENTE")
+                {
+                    return Ok(ConsultaRepository.ListarConsultasPac(id));
+                }
+                else
+                {
+                    return Ok(ConsultaRepository.ListarConsultas());
+                }
             }
             catch (Exception ex)
             {

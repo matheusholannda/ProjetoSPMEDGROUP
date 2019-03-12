@@ -1,8 +1,5 @@
 ﻿using SPMedGroup.Domains;
-using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 
 namespace SPMedGroup.Interfaces
 {
@@ -10,5 +7,8 @@ namespace SPMedGroup.Interfaces
     {
         void Cadastrar(Consultas consulta);
         void Atualizar(Consultas consulta);
+        List<Consultas> ListarConsultasMed(int id);
+        List<Consultas> ListarConsultasPac(int id);
+        List<Consultas> ListarConsultas();
     }
 }

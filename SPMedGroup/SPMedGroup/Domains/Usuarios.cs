@@ -12,13 +12,14 @@ namespace SPMedGroup.Domains
         }
 
         public int Id { get; set; }
-        [Required]
+        [Required(ErrorMessage = "Informe seu nome")]
         public string Nome { get; set; }
-        [Required]
+        [Required(ErrorMessage = "Informe o tipo de usuário")]
         public int IdTipoUsuario { get; set; }
-        [Required]
+        [Required(ErrorMessage = "Informe o email")]
         public string Email { get; set; }
-        [Required]
+        [Required(ErrorMessage = "Informe a senha")]
+        [StringLength(150, MinimumLength = 3, ErrorMessage = "A senha deve ter 3 e 150 caracteres")]
         public string Senha { get; set; }
 
         public TipoUsuarios IdTipoUsuarioNavigation { get; set; }
