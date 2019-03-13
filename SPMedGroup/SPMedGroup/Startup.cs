@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.IdentityModel.Tokens;
+using Swashbuckle.AspNetCore.Swagger;
 using System;
 
 namespace SPMedGroup
@@ -21,6 +22,11 @@ namespace SPMedGroup
                 }
                 )
                 .SetCompatibilityVersion(Microsoft.AspNetCore.Mvc.CompatibilityVersion.Version_2_1);
+
+            services.AddSwaggerGen(c =>
+            {
+                c.SwaggerDoc("v1", new Info { Title = "SPMedGroup", Version = "v1" });
+            });
 
             services.AddAuthentication(options =>
             {
@@ -56,6 +62,15 @@ namespace SPMedGroup
             }
 
             app.UseAuthentication();
+
+            app.UseSwagger();
+
+            // Enable middleware to serve swagger-ui (HTML, JS, CSS, etc.), 
+            // specifying the Swagger JSON endpoint.
+            app.UseSwaggerUI(c =>
+            {
+                c.SwaggerEndpoint("/swagger/v1/swagger.json", "SPMedGroup");
+            });
 
             app.UseMvc();
         }

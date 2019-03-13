@@ -8,6 +8,7 @@ using Microsoft.AspNetCore.Mvc;
 using SPMedGroup.Domains;
 using SPMedGroup.Interfaces;
 using SPMedGroup.Repositories;
+using SPMedGroup.Util;
 
 namespace SPMedGroup.Controllers
 {
@@ -30,6 +31,8 @@ namespace SPMedGroup.Controllers
             try
             {
                 ConsultaRepository.Cadastrar(consulta);
+                Util.SendGrid send = new Util.SendGrid();
+                send.Execute(consulta.IdProntuarioNavigation.IdUsuarioNavigation.Email);
                 return Ok();
             }
             catch (Exception ex)

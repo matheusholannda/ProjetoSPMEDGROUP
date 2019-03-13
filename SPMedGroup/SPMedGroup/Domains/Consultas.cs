@@ -6,6 +6,7 @@ namespace SPMedGroup.Domains
 {
     public partial class Consultas
     {
+        [Required(ErrorMessage = "Informe o Id da consulta que será consultada")]
         public int Id { get; set; }
         [Required(ErrorMessage = "Informe o prontuário do paciente que será atendido")]
         public int IdProntuario { get; set; }

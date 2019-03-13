@@ -30,5 +30,14 @@ namespace SPMedGroup.Repositories
                 return null;
             }
         }
+
+        public void CadastrarProntuario(ProntuarioPaciente prontuario)
+        {
+            using (SPMedGroupContext ctx = new SPMedGroupContext())
+            {
+                ctx.ProntuarioPaciente.Add(prontuario);
+                ctx.SaveChanges();
+            }
+        }
     }
 }

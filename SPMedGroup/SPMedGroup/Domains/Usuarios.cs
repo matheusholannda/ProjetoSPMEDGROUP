@@ -19,7 +19,7 @@ namespace SPMedGroup.Domains
         [Required(ErrorMessage = "Informe o email")]
         public string Email { get; set; }
         [Required(ErrorMessage = "Informe a senha")]
-        [StringLength(150, MinimumLength = 3, ErrorMessage = "A senha deve ter 3 e 150 caracteres")]
+        [StringLength(150, MinimumLength = 4, ErrorMessage = "A senha deve ter 4 e 150 caracteres")]
         public string Senha { get; set; }
 
         public TipoUsuarios IdTipoUsuarioNavigation { get; set; }

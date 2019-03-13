@@ -1,0 +1,173 @@
+{
+	"variables": [],
+	"info": {
+		"name": "SPMedGroup",
+		"_postman_id": "df7aea98-27bb-07e2-ef99-48eea5593f4b",
+		"description": "",
+		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Usuarios",
+			"description": "",
+			"item": [
+				{
+					"name": "Cadastrar",
+					"request": {
+						"url": "http://localhost:5000/api/Usuarios",
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"nome\" : \"Médico1\",\n\t\"idtipousuario\" : \"2\",\n\t\"email\" : \"med1@med1.com\",\n\t\"senha\" : \"med1\"\n}"
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "Login",
+					"request": {
+						"url": "http://localhost:5000/api/Login",
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"email\" : \"admin@admin.com\",\n\t\"senha\" : \"admin\"\n}"
+						},
+						"description": ""
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Clinicas",
+			"description": "",
+			"item": [
+				{
+					"name": "Listar",
+					"request": {
+						"url": "http://localhost:5000/api/Clinicas",
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJodHRwOi8vd3d3LnczLm9yZy8yMDAxLzA0L3htbGRzaWctbW9yZSNobWFjLXNoYTI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImFkbWluQGFkbWluLmNvbSIsImp0aSI6IjEiLCJodHRwOi8vc2NoZW1hcy5taWNyb3NvZnQuY29tL3dzLzIwMDgvMDYvaWRlbnRpdHkvY2xhaW1zL3JvbGUiOiJBRE1JTiIsImV4cCI6MTU1MjQxNTIwMiwiaXNzIjoiU1BNZWRHcm91cCIsImF1ZCI6IlNQTWVkR3JvdXAifQ.lq4x9jURwh-lenfhwiOlze4eoDUyN0TQQZDkiAX6v0k",
+								"description": ""
+							}
+						],
+						"body": {},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "Cadastrar",
+					"request": {
+						"url": "http://localhost:5000/api/Clinicas",
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"cnpj\" : \"86400902000143\",\n\t\"razaosocial\" : \"Fleury\",\n\t\"endereco\" : \"Avenida Albert Einstein, 627\"\n}"
+						},
+						"description": ""
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Consultas",
+			"description": "",
+			"item": [
+				{
+					"name": "Cadastrar",
+					"request": {
+						"url": "http://localhost:5000/api/Consultas",
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJodHRwOi8vd3d3LnczLm9yZy8yMDAxLzA0L3htbGRzaWctbW9yZSNobWFjLXNoYTI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImFkbWluQGFkbWluLmNvbSIsImp0aSI6IjEiLCJodHRwOi8vc2NoZW1hcy5taWNyb3NvZnQuY29tL3dzLzIwMDgvMDYvaWRlbnRpdHkvY2xhaW1zL3JvbGUiOiJBRE1JTiIsImV4cCI6MTU1MjMzMzgyOSwiaXNzIjoiU1BNZWRHcm91cCIsImF1ZCI6IlNQTWVkR3JvdXAifQ.uyxXclPeoxiVLaqborO_usNSYLYtlUwg5X3gufBYlAk",
+								"description": ""
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"IdProntuario\": \"7\",\n    \"IdMedico\": \"2\",\n    \"DataConsulta\": \"2019-04-12\",\n    \"Descricao\": null,\n    \"IdTipoSituacao\": \"1\"\n}"
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "Atualizar",
+					"request": {
+						"url": "http://localhost:5000/api/Consultas",
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJodHRwOi8vd3d3LnczLm9yZy8yMDAxLzA0L3htbGRzaWctbW9yZSNobWFjLXNoYTI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImFkbWluQGFkbWluLmNvbSIsImp0aSI6IjEiLCJodHRwOi8vc2NoZW1hcy5taWNyb3NvZnQuY29tL3dzLzIwMDgvMDYvaWRlbnRpdHkvY2xhaW1zL3JvbGUiOiJBRE1JTiIsImV4cCI6MTU1MjMzNTMxMywiaXNzIjoiU1BNZWRHcm91cCIsImF1ZCI6IlNQTWVkR3JvdXAifQ.MNVMmq5Kc8wffv4B9wpTjvbWuT-yJrj380QpZ-tcyH8",
+								"description": ""
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"IdProntuario\": \"7\",\n    \"IdMedico\": \"2\",\n    \"DataConsulta\": \"2019-04-12\",\n    \"Descricao\": null,\n    \"IdTipoSituacao\": \"2\"\n}"
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "Listar.PorUsuario",
+					"request": {
+						"url": "http://localhost:5000/api/Consultas",
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJodHRwOi8vd3d3LnczLm9yZy8yMDAxLzA0L3htbGRzaWctbW9yZSNobWFjLXNoYTI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImFsZXhhbmRyZUBnbWFpbC5jb20iLCJqdGkiOiIzIiwiaHR0cDovL3NjaGVtYXMubWljcm9zb2Z0LmNvbS93cy8yMDA4LzA2L2lkZW50aXR5L2NsYWltcy9yb2xlIjoiUEFDSUVOVEUiLCJleHAiOjE1NTI0MTc3NDcsImlzcyI6IlNQTWVkR3JvdXAiLCJhdWQiOiJTUE1lZEdyb3VwIn0.xiMQyR8FC_a8YvVNr3IwOHkTBF37mx3C1LVwKy08YLw",
+								"description": ""
+							}
+						],
+						"body": {},
+						"description": ""
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}

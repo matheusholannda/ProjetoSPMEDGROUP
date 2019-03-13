@@ -37,5 +37,20 @@ namespace SPMedGroup.Controllers
                 return BadRequest(ex.Message);
             }
         }
+
+        [Authorize(Roles = "ADMIN")]
+        [HttpPost("Prontuario")]
+        public IActionResult CadastrarProntuario(ProntuarioPaciente prontuario)
+        {
+            try
+            {
+                UsuarioRepository.CadastrarProntuario(prontuario);
+                return Ok();
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
+        }
     }
 }
