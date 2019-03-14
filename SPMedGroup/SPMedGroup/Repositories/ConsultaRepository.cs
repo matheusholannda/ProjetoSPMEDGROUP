@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
+using Microsoft.EntityFrameworkCore;
 using SPMedGroup.Domains;
 using SPMedGroup.Interfaces;
 
@@ -46,6 +47,21 @@ namespace SPMedGroup.Repositories
             using (SPMedGroupContext ctx = new SPMedGroupContext())
             {
                 return ctx.Consultas.Where(x => x.IdProntuario == id).ToList();
+            }
+        }
+
+        public Consultas BuscarPorId(int id)
+        {
+            using (SPMedGroupContext ctx = new SPMedGroupContext())
+            {
+                Consultas consulta = ctx.Consultas.Include(x => x.IdProntuarioNavigation).Include(x => x.IdProntuarioNavigation.IdUsuarioNavigation).FirstOrDefault(x => x.Id == id);
+            
+                if (consulta == null)
+                {
+                    return null;
+                }
+
+                return consulta;
             }
         }
     }

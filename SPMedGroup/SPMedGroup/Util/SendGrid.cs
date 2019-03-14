@@ -9,21 +9,27 @@ using System.Threading.Tasks;
 namespace SPMedGroup.Util
 {
     public class SendGrid
-    {     
+    {
+        static string email { get; set; }
 
-        public void Execute(string email)
+        static async Task Execute()
         {
-            var client = new SendGridClient("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");
-            var msg = new SendGridMessage()
-            {
-                From = new EmailAddress("matheushpribeiro@hotmail.com", "SP Med Group"),
-                Subject = "Hello World from the SendGrid CSharp SDK!",
-                PlainTextContent = "Hello, Email!",
-                HtmlContent = "<strong>Hello, Email!</strong>"
-            };
+            //Informe sua ApiKey do SendGrid
+            var client = new SendGridClient("");
+            var from = new EmailAddress("matheushpribeiro@hotmail.com", "SP Med Group");
+            var subject = "SP Medical Group Consultas";
+            var to = new EmailAddress(email, "Paciente");
+            var plainTextContent = "Consulta";
+            var htmlContent = "<strong>Consulta na clínica SPMedGroup marcada";
+            var msg = MailHelper.CreateSingleEmail(from, to, subject, plainTextContent, htmlContent);
+            var response = await client.SendEmailAsync(msg);
+        }
 
-            msg.AddTo(new EmailAddress(email, "Test User"));
-            var response = client.SendEmailAsync(msg);
+        public void Enviar(string emailRecebido)
+        {
+            email = emailRecebido;
+
+            Execute().Wait();
         }
     }
 }

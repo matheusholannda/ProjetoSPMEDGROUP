@@ -31,8 +31,12 @@ namespace SPMedGroup.Controllers
             try
             {
                 ConsultaRepository.Cadastrar(consulta);
-                Util.SendGrid send = new Util.SendGrid();
-                send.Execute(consulta.IdProntuarioNavigation.IdUsuarioNavigation.Email);
+
+                Consultas consultas = ConsultaRepository.BuscarPorId(consulta.Id);
+
+                Util.SendGrid Email = new Util.SendGrid();
+
+                Email.Enviar(consultas.IdProntuarioNavigation.IdUsuarioNavigation.Email);
                 return Ok();
             }
             catch (Exception ex)

@@ -10,5 +10,6 @@ namespace SPMedGroup.Interfaces
         List<Consultas> ListarConsultasMed(int id);
         List<Consultas> ListarConsultasPac(int id);
         List<Consultas> ListarConsultas();
+        Consultas BuscarPorId(int id);
     }
 }
