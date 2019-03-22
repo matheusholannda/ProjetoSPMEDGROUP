@@ -1,0 +1,77 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    color: #FFFFFF;
+}
+
+.background{
+    height: 100vh;
+    width: 100vw;
+    background-image: url(../imagens/clinic-doctors-glass-127873.jpg);
+    background-size: cover;
+    background-position: center; 
+    filter: blur(5px);
+    position: absolute;
+    left:0;
+    top: 0;
+}
+
+.opac{
+    height: 100vh;
+    width: 100vw;
+    background-color: #3981A7;
+    opacity: 0.7;
+    display: flex;
+}
+
+.inputboxshadow{
+    height: 621px;
+    width: 579px;
+    background-color: #000000;
+    margin: auto;
+    border-radius: 1em;
+}
+
+.circulo{
+    height: 150px;
+    width: 150px;
+    border: 3px solid #FFFFFF;
+    border-radius: 100%;
+    margin: auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 200;
+    margin-top: 40px;
+}
+
+.circulo img{
+    height: 95px;
+    width: 88px;
+    
+}
+
+.inputs{
+    display: flex;
+    justify-content:space-around;
+    align-items: center;
+    flex-direction: column;
+    height: 10em;
+}
+
+.inputs hr{
+    width: 80%;    
+    transform: translateY(-50px);
+    z-index: 2;
+}
+
+.btn{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.btn hr{
+    width: 80%;
+}

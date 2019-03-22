@@ -64,5 +64,14 @@ namespace SPMedGroup.Repositories
                 return consulta;
             }
         }
+
+        public void AtualizarDesc(Consultas consulta)
+        {
+            using (SPMedGroupContext ctx = new SPMedGroupContext())
+            {
+                ctx.Consultas.Update(consulta);
+                ctx.SaveChanges();
+            }
+        }
     }
 }

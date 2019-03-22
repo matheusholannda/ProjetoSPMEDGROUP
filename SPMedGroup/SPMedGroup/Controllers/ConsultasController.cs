@@ -88,5 +88,20 @@ namespace SPMedGroup.Controllers
                 return BadRequest(ex.Message);
             }
         }
+
+        [Authorize(Roles = "MEDICO")]
+        [HttpPut("attconsulta")]
+        public IActionResult AtualizarDesc(Consultas consulta)
+        {
+            try
+            {
+                ConsultaRepository.AtualizarDesc(consulta);
+                return Ok();
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
+        }
     }
 }
