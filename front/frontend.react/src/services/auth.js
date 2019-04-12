@@ -1,0 +1,1 @@
+export const usuarioAutorizado = () => localStorage.getItem('user-spmedgroup') !== null
