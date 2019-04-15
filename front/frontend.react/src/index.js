@@ -2,7 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
 import App from './pages/Login/App';
-import Menu from './pages/Menu/Menu';
+import Menu from './pages/MenuConsultas/MenuConsultas';
 import {Route, BrowserRouter as Router, Switch, Redirect} from 'react-router-dom';
 import { usuarioAutorizado } from './services/auth';
 import * as serviceWorker from './serviceWorker';
