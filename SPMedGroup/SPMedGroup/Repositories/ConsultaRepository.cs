@@ -30,7 +30,8 @@ namespace SPMedGroup.Repositories
         {
             using (SPMedGroupContext ctx = new SPMedGroupContext())
             {
-                return ctx.Consultas.ToList();
+                return ctx.Consultas.Include(x => x.IdProntuarioNavigation).ToList();
+
             }
         }
 

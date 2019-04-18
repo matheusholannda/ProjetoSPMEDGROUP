@@ -44,7 +44,7 @@ namespace SPMedGroup
 
                     IssuerSigningKey = new SymmetricSecurityKey(System.Text.Encoding.UTF8.GetBytes("spmedgroup-chave-autenticacao")),
 
-                    ClockSkew = TimeSpan.FromMinutes(10),
+                    //ClockSkew = TimeSpan.FromMinutes(60),
 
                     ValidIssuer = "SPMedGroup",
 
