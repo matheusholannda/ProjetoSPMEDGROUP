@@ -1,6 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import './index.css';
+import './index.css'; 
 import App from './pages/Login/App';
 import Menu from './pages/MenuConsultas/MenuConsultas';
 import {Route, BrowserRouter as Router, Switch, Redirect} from 'react-router-dom';
@@ -11,7 +11,7 @@ const Permissao = ({component : Component}) => (
     <Route 
         render = {props => usuarioAutorizado() ?
             (<Component {...props}/>) :
-            (<Redirect to={{ pathname : '/login', state : {from: props.location} }}/>)
+            (<Redirect to={{ pathname : '/', state : {from: props.location} }}/>)
         }
     /> 
 );

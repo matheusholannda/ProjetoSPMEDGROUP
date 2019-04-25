@@ -1,6 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using SPMedGroup.Domains;
 using SPMedGroup.Interfaces;
+using System.Collections.Generic;
 using System.Linq;
 
 namespace SPMedGroup.Repositories
@@ -37,6 +38,22 @@ namespace SPMedGroup.Repositories
             {
                 ctx.ProntuarioPaciente.Add(prontuario);
                 ctx.SaveChanges();
+            }
+        }
+
+        public List<Medicos> ListarMedicos()
+        {
+            using (SPMedGroupContext ctx = new SPMedGroupContext())
+            {
+                return ctx.Medicos.ToList();
+            }
+        }
+
+        public List<Usuarios> ListarPacientes()
+        {
+            using (SPMedGroupContext ctx = new SPMedGroupContext())
+            { 
+                return ctx.Usuarios.Where(x => x.IdTipoUsuarioNavigation.TipoUsuario == "Paciente").ToList();
             }
         }
     }

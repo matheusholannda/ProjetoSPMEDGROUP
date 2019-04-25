@@ -18,8 +18,8 @@ namespace SPMedGroup.Domains
         [Required(ErrorMessage = "Informe o estado da consulta(começa apenas agendada)")]
         public int IdTipoSituacao { get; set; }
 
-        public Medicos IdMedicoNavigation { get; set; }
-        public ProntuarioPaciente IdProntuarioNavigation { get; set; }
-        public TipoSituacoes IdTipoSituacaoNavigation { get; set; }
+        public virtual Medicos IdMedicoNavigation { get; set; }
+        public virtual ProntuarioPaciente IdProntuarioNavigation { get; set; }
+        public virtual TipoSituacoes IdTipoSituacaoNavigation { get; set; }
     }
 }

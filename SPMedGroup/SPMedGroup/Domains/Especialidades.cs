@@ -13,6 +13,6 @@ namespace SPMedGroup.Domains
         public int Id { get; set; }
         public string Nome { get; set; }
 
-        public ICollection<Medicos> Medicos { get; set; }
+        public virtual ICollection<Medicos> Medicos { get; set; }
     }
 }

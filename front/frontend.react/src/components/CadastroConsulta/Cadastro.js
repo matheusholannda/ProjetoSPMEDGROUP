@@ -12,10 +12,40 @@ export default class Cadastrar extends Component {
             medico: '',
             data: '',
             desc: '',
-            situacao: '',
+            situacao: 3,
+            listaMedicos: [],
+            listaPacientes: []
         }
     }
-    
+
+    buscarMedicos() {
+        fetch('http://localhost:5000/api/Consultas/', {
+        })
+            .then(resposta => resposta.json())
+            .then(data => this.setState({ listaMedicos: data }))
+            .catch(erro => console.log(erro))
+    }
+
+    buscarPacientes() {
+        fetch('http://localhost:5000/api/Consultas/', {
+        })
+            .then(resposta => resposta.json())
+            .then(data => this.setState({ listaPacientes: data }))
+            .catch(erro => console.log(erro))
+    }
+
+    buscarConsultas() {
+        fetch('http://localhost:5000/api/Consultas/', {
+            headers: {
+                'Authorization': 'Bearer ' + token,
+                'Content-Type': 'application/json'
+            }
+        })
+            .then(resposta => resposta.json())
+            .then(data => this.setState({ lista: data }))
+            .catch(erro => console.log(erro))
+    }
+
     cadastrarConsulta(event) {
         event.preventDefault();
 
@@ -56,10 +86,6 @@ export default class Cadastrar extends Component {
         this.setState({ desc: event.target.value })
     }
 
-    atualizaEstadoSituacao(event) {
-        this.setState({ situacao: event.target.value })
-    }
-
     render() {
         return (
 
@@ -73,6 +99,18 @@ export default class Cadastrar extends Component {
                             onChange={this.atualizaEstadoProntuario.bind(this)}
                             placeholder="Prontuário"
                         />
+                        {/* <select
+                        value={this.state.prontuario}
+                        onChange={this.atualizaEstadoProntuario.bind(this)}>
+                            <option>Selecione um paciente</option>
+                            {
+                                this.state.listaPacientes.map(function (element) {
+                                    return (
+                                        <option value={element.id} key={element.id}>{element.nome}</option>
+                                    );
+                                })
+                            }
+                        </select> */}
                         <input
                             type="text"
                             value={this.state.medico}
@@ -91,12 +129,6 @@ export default class Cadastrar extends Component {
                             value={this.state.desc}
                             onChange={this.atualizaEstadoDescricao.bind(this)}
                             placeholder="Descrição"
-                        />
-                        <input
-                            type="text"
-                            value={this.state.situacao}
-                            onChange={this.atualizaEstadoSituacao.bind(this)}
-                            placeholder="Situação"
                         />
                         <button
                             type="submit"

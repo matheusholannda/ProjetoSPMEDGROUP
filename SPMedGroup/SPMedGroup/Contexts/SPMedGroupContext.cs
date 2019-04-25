@@ -28,6 +28,7 @@ namespace SPMedGroup.Domains
         {
             if (!optionsBuilder.IsConfigured)
             {
+                
                 optionsBuilder.UseSqlServer("Data Source=.\\SqlExpress;Initial Catalog=SENAI_SPMEDGROUP;User id=sa;Password=132");
             }
         }

@@ -19,6 +19,6 @@ namespace SPMedGroup.Domains
         [Required(ErrorMessage = "Informe o endereço da clínica")]
         public string Endereco { get; set; }
 
-        public ICollection<Medicos> Medicos { get; set; }
+        public virtual ICollection<Medicos> Medicos { get; set; }
     }
 }

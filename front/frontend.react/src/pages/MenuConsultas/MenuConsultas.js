@@ -1,13 +1,11 @@
 import React, { Component } from 'react';
 import exit from '../../assets/images/enter.png';
 import './MenuConsultas.css';
-import Cadastro from '../../components/CadastroConsulta/Cadastro'
-
-let token = localStorage.getItem("user-spmedgroup");
-
-// let jwtDecode = require("jwt-decode");
-
-// let decode = jwtDecode(token);
+import Cadastro from '../../components/CadastroConsulta/Cadastro';
+import jwt_decode from 'jwt-decode';
+import axios from 'axios';
+import { sair } from '../../services/auth';
+import { Link } from 'react-router-dom';
 
 export default class Menu extends Component {
     constructor() {
@@ -18,67 +16,70 @@ export default class Menu extends Component {
             medico: '',
             data: '',
             desc: '',
-            situacao: '',
+            situacao: ''
         }
     }
 
     buscarConsultas() {
-        fetch('http://localhost:5000/api/Consultas/', {
-            headers: {
-                'Authorization': 'Bearer ' + token
-            }
-        })
-            .then(resposta => resposta.json())
-            .then(data => this.setState({ lista: data }))
+        axios.get('http://localhost:5000/api/Consultas',
+            {
+                headers: {
+                    'Authorization': 'Bearer ' + localStorage.getItem("user-spmedgroup"),
+                    'Content-Type': 'application/json'
+                }
+            })
+
+            .then(data => {
+                console.log(data.data);
+                this.setState({ lista: data.data })
+            })
             .catch(erro => console.log(erro))
     }
 
-    logout(event) {
-        event.preventDefault();
-
-        localStorage.removeItem("user-spmedgroup");
-        this.props.history.push("/");
+    componentDidMount() {
+        this.buscarConsultas();
     }
 
     render() {
         document.title = 'SPMedGroup'
+        let token = localStorage.getItem("user-spmedgroup");
+        var decode = jwt_decode(token);
+
+        var that = this
+
         return (
             <div>
-                <div className="toolbar"><img src={exit} onClick={this.logout} alt="Sair da Página" /></div>
+                <div className="toolbar"><Link onClick={sair} to='/'><img src={exit} alt="Sair da Página" /></Link></div>
                 <div className="info">
                     <div className="options"></div>
                     <div className="dados">
                         <section className="cadastroListagem">
 
-                            {/* {decode.tipoUsuario == "Admin" ? (
-                                <Cadastro />
-                            ) : (
-                                    <div></div>
-                                )} */}
-                                <Cadastro />
+                            {decode.Permissao == "ADMIN" ? (<Cadastro />) : <div></div>}
+
                             <h2>Consultas</h2>
                             <div className="listagem">
                                 <table id="tabela-lista">
                                     <thead>
                                         <tr>
                                             <th>#</th>
-                                            <th>Id-Prontuario</th>
-                                            <th>Id-Medico</th>
+                                            <th>Prontuario</th>
+                                            <th>Medico</th>
                                             <th>Data da Consulta</th>
-                                            <th>Id-TipoSituação</th>
+                                            <th>Tipo Situação</th>
                                         </tr>
                                     </thead>
 
                                     <tbody>
                                         {
-                                            this.state.lista.map(function (consulta) {
+                                            that.state.lista.map(consulta => {
                                                 return (
                                                     <tr key={consulta.id}>
                                                         <td>{consulta.id}</td>
-                                                        <td>{consulta.idProntuario}</td>
-                                                        <td>{consulta.idMedico}</td>
+                                                        <td>{consulta.idProntuarioNavigation.idUsuarioNavigation.nome}</td>
+                                                        <td>{consulta.idMedicoNavigation.nome}</td>
                                                         <td>{consulta.dataConsulta}</td>
-                                                        <td>{consulta.idTipoSituacao}</td>
+                                                        <td>{consulta.idTipoSituacaoNavigation.situacao}</td>
                                                     </tr>
                                                 );
                                             })

@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.IdentityModel.Tokens.Jwt;
 using System.Linq;
 using System.Security.Claims;
@@ -80,7 +81,8 @@ namespace SPMedGroup.Controllers
                 }
                 else
                 {
-                    return Ok(ConsultaRepository.ListarConsultas());
+                    List<Consultas> listaConsultas = ConsultaRepository.ListarConsultas().Take(4).ToList();
+                    return Ok(listaConsultas);
                 }
             }
             catch (Exception ex)

@@ -34,6 +34,8 @@ html {
     width: 13%;
     background-color: #5BA1C7;
     height: 100%;
+    display: flex;
+    flex-direction: column;
 }
 
 .info {

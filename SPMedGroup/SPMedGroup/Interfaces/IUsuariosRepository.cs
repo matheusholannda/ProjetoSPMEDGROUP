@@ -1,4 +1,5 @@
 ﻿using SPMedGroup.Domains;
+using System.Collections.Generic;
 
 namespace SPMedGroup.Interfaces
 {
@@ -7,5 +8,7 @@ namespace SPMedGroup.Interfaces
         void Cadastrar(Usuarios usuario);
         void CadastrarProntuario(ProntuarioPaciente prontuario);
         Usuarios BuscarPorEmailSenha(string email, string senha);
+        List<Medicos> ListarMedicos();
+        List<Usuarios> ListarPacientes();
     }
 }

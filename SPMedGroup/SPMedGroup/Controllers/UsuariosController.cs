@@ -52,5 +52,31 @@ namespace SPMedGroup.Controllers
                 return BadRequest(ex.Message);
             }
         }
+
+        [HttpGet("ListarMedico")]
+        public IActionResult ListarMedicos()
+        {
+            try
+            {                
+                return Ok(UsuarioRepository.ListarMedicos());
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
+        }
+
+        [HttpGet("ListarPaciente")]
+        public IActionResult ListarPacientes()
+        {
+            try
+            {
+                return Ok(UsuarioRepository.ListarPacientes());
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
+        }
     }
 }
