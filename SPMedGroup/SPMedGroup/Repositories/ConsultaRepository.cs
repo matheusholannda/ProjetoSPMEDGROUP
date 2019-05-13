@@ -30,8 +30,16 @@ namespace SPMedGroup.Repositories
         {
             using (SPMedGroupContext ctx = new SPMedGroupContext())
             {
-                return ctx.Consultas.Include(x => x.IdProntuarioNavigation.IdUsuarioNavigation).Include(x => x.IdTipoSituacaoNavigation).Include(x=> x.IdMedicoNavigation).ToList();
+                List<Consultas>listaConsultas = ctx.Consultas.Include(x => x.IdProntuarioNavigation.IdUsuarioNavigation).Include(x => x.IdTipoSituacaoNavigation).Include(x=> x.IdMedicoNavigation).ToList();
 
+                foreach (var item in listaConsultas)
+                {
+                    item.IdMedicoNavigation.Consultas = null;
+                    item.IdProntuarioNavigation.Consultas = null;
+                    item.IdTipoSituacaoNavigation.Consultas = null;
+                }
+
+                return listaConsultas;
             }
         }
 
@@ -39,7 +47,18 @@ namespace SPMedGroup.Repositories
         {
             using (SPMedGroupContext ctx = new SPMedGroupContext())
             {
-                return ctx.Consultas.Include(x => x.IdProntuarioNavigation.IdUsuarioNavigation).Include(x => x.IdTipoSituacaoNavigation).Include(x => x.IdMedicoNavigation).Where(x => x.IdMedico == id).ToList();
+                Medicos medico = ctx.Medicos.FirstOrDefault(x => x.IdUsuario == id);
+
+                List<Consultas> listaConsultas = ctx.Consultas.Include(x => x.IdProntuarioNavigation.IdUsuarioNavigation).Include(x => x.IdTipoSituacaoNavigation).Include(x => x.IdMedicoNavigation).Where(x => x.IdMedicoNavigation.Id == medico.Id).ToList();
+
+                foreach (var item in listaConsultas)
+                {
+                    item.IdMedicoNavigation.Consultas = null;
+                    item.IdProntuarioNavigation.Consultas = null;
+                    item.IdTipoSituacaoNavigation.Consultas = null;
+                }
+
+                return listaConsultas;
             }
         }
 
@@ -47,7 +66,18 @@ namespace SPMedGroup.Repositories
         {
             using (SPMedGroupContext ctx = new SPMedGroupContext())
             {
-                return ctx.Consultas.Include(x => x.IdProntuarioNavigation.IdUsuarioNavigation).Include(x => x.IdTipoSituacaoNavigation).Include(x => x.IdMedicoNavigation).Where(x => x.IdProntuario == id).ToList();
+                ProntuarioPaciente prontuario = ctx.ProntuarioPaciente.FirstOrDefault(x => x.IdUsuario == id);
+
+                List<Consultas> listaConsultas = ctx.Consultas.Include(x => x.IdProntuarioNavigation.IdUsuarioNavigation).Include(x => x.IdTipoSituacaoNavigation).Include(x => x.IdMedicoNavigation).Where(x => x.IdProntuarioNavigation.Id == prontuario.Id).ToList();
+
+                foreach (var item in listaConsultas)
+                {
+                    item.IdMedicoNavigation.Consultas = null;
+                    item.IdProntuarioNavigation.Consultas = null;
+                    item.IdTipoSituacaoNavigation.Consultas = null;
+                }
+
+                return listaConsultas;
             }
         }
 

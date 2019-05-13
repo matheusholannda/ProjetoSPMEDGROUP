@@ -81,7 +81,7 @@ namespace SPMedGroup.Controllers
                 }
                 else
                 {
-                    List<Consultas> listaConsultas = ConsultaRepository.ListarConsultas().Take(4).ToList();
+                    List<Consultas> listaConsultas = ConsultaRepository.ListarConsultas().ToList();
                     return Ok(listaConsultas);
                 }
             }

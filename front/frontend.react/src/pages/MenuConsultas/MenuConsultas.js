@@ -30,7 +30,6 @@ export default class Menu extends Component {
             })
 
             .then(data => {
-                console.log(data.data);
                 this.setState({ lista: data.data })
             })
             .catch(erro => console.log(erro))
