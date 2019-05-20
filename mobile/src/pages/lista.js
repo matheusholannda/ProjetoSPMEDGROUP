@@ -37,11 +37,13 @@ export default class Consultas extends Component {
         return (
             <View>
                 <Text style={styles.headers}>Consultas</Text>
-                <FlatList
-                    data={this.state.lista}
-                    keyExtractor={item => item.id}
-                    renderItem={this.renderizaItem}
-                />
+                <View style={styles.list}>
+                    <FlatList
+                        data={this.state.lista}
+                        keyExtractor={item => item.id}
+                        renderItem={this.renderizaItem}
+                    />
+                </View>
             </View>
         )
     }
@@ -63,8 +65,8 @@ const styles = StyleSheet.create({
         color: "green"
         , width: 100
         , marginLeft: 160
-        ,fontSize: 20
-        ,marginTop: 20
+        , fontSize: 20
+        , marginTop: 20
     }
     , consultas: {
         padding: 10,
@@ -73,5 +75,9 @@ const styles = StyleSheet.create({
         , marginLeft: '5%'
         , marginTop: '5%'
         , fontSize: 12
+    }
+    , list: {
+        paddingBottom: 120,
+        paddingTop: 20
     }
 })
