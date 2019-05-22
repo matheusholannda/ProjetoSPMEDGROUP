@@ -29,29 +29,29 @@ export default class Login extends Component {
     render() {
         return (
             <ImageBackground
-            source={require("../assets/img/background.png")}
-            style={{width: '100%', height: '100%'}}
+                source={require("../assets/img/background.png")}
+                style={{ width: '100%', height: '100%' }}
             >
                 <View style={styles.body}>
-                    <Image
-                        source={require('../assets/img/logo.png')}
-                        style={styles.logo}
-                    />
-                    <TextInput style={styles.input}
-                        onChangeText={email => this.setState({ email })}
-                        placeholder="Email"
-                    />
-                    <TextInput style={styles.input}
-                        onChangeText={senha => this.setState({ senha })}
-                        placeholder="Senha"
-                        secureTextEntry={true}
-                    />
-                    <TouchableOpacity
-                        style={styles.button}
-                        onPress={this.realizarLogin}
-                    >
-                        <Text style={styles.buttontxt}>Entrar</Text>
-                    </TouchableOpacity>
+                        <Image
+                            source={require('../assets/img/logo.png')}
+                            style={styles.logo}
+                        />
+                        <TextInput style={styles.input}
+                            onChangeText={email => this.setState({ email })}
+                            placeholder="Email"
+                        />
+                        <TextInput style={styles.input}
+                            onChangeText={senha => this.setState({ senha })}
+                            placeholder="Senha"
+                            secureTextEntry={true}
+                        />
+                        <TouchableOpacity
+                            style={styles.button}
+                            onPress={this.realizarLogin}
+                        >
+                            <Text style={styles.buttontxt}>Entrar</Text>
+                        </TouchableOpacity>
                 </View>
             </ImageBackground>
         );
@@ -60,14 +60,12 @@ export default class Login extends Component {
 
 const styles = StyleSheet.create({
     input: {
-        width: 250,
+        width: "80%",
         backgroundColor: "transparent",
         borderBottomColor: "#707070",
         borderBottomWidth: 2,
         alignItems: "center",
         position: "relative",
-        left: 80,
-        top: 50
     },
 
     button: {
@@ -78,9 +76,8 @@ const styles = StyleSheet.create({
         borderWidth: 0.5,
         borderRadius: 5,
         position: "relative",
-        left: 140,
         textAlign: "center",
-        top: 150,
+        top: 50,
         shadowOffset: { width: 100, height: 100, },
         shadowColor: 'black',
         shadowOpacity: 1.0,
@@ -97,17 +94,18 @@ const styles = StyleSheet.create({
     logo: {
         height: 100,
         width: 100,
-        left: 155,
-        resizeMode: "contain",
-        marginTop: 100
+        resizeMode: "contain"
     },
 
     body: {
         backgroundColor: '#FFFFFF',
         opacity: 0.8,
         width: '80%',
-        height: '80%',
-        marginTop: 70,
-        marginLeft: 43
+        height: '70%',
+        justifyContent: "center",
+        alignItems: "center",
+        marginTop: "25%",
+        marginLeft: 43,
+        borderRadius: 8
     }
 });

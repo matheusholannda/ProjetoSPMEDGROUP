@@ -50,12 +50,12 @@ export default class Consultas extends Component {
 
     renderizaItem = ({ item }) => (
         <View style={styles.consultas}>
-            <Text>Data: {item.dataConsulta}</Text>
-            <Text>Status: {item.idTipoSituacaoNavigation.situacao}</Text>
-            <Text>{item.idProntuarioNavigation.idUsuarioNavigation.nome}</Text>
-            <Text>{item.idProntuarioNavigation.dataNascimento}</Text>
-            <Text>{item.idMedicoNavigation.nome}</Text>
-            <Text>Obs: {item.descricao}</Text>
+            <Text style={styles.text}>Status: {item.idTipoSituacaoNavigation.situacao}</Text>
+            <Text style={styles.text}>Paciente: {item.idProntuarioNavigation.idUsuarioNavigation.nome}</Text>
+            <Text style={styles.text}>Data de Nascimento: {item.idProntuarioNavigation.dataNascimento}</Text>
+            <Text style={styles.text}>Médico: {item.idMedicoNavigation.nome}</Text>
+            <Text style={styles.text}>Data: {item.dataConsulta}</Text>
+            <Text style={styles.text}>Obs: {item.descricao}</Text>
         </View>
     );
 }
@@ -70,14 +70,23 @@ const styles = StyleSheet.create({
     }
     , consultas: {
         padding: 10,
-        backgroundColor: "#ededed"
+        backgroundColor: "#f5f5f5"
         , width: '90%'
         , marginLeft: '5%'
         , marginTop: '5%'
-        , fontSize: 12
+        ,borderRadius: 4
+        ,borderWidth: 0.5
+        ,overflow: "hidden"
+        ,shadowColor: "#bdbdbd"
+        ,shadowRadius: 8
+        ,shadowOpacity:1
     }
     , list: {
         paddingBottom: 120,
         paddingTop: 20
+    }
+    , text: {
+        fontSize: 16
+        ,color: "black"
     }
 })
