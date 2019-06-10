@@ -49,11 +49,19 @@ namespace SPMedGroup.Repositories
             }
         }
 
-        public List<Usuarios> ListarPacientes()
+        //public List<Usuarios> ListarPacientes()
+        //{
+        //    using (SPMedGroupContext ctx = new SPMedGroupContext())
+        //    { 
+        //        return ctx.Usuarios.Where(x => x.IdTipoUsuarioNavigation.TipoUsuario == "Paciente").ToList();
+        //    }
+        //}
+
+        public List<ProntuarioPaciente> ListarPacientes()
         {
             using (SPMedGroupContext ctx = new SPMedGroupContext())
-            { 
-                return ctx.Usuarios.Where(x => x.IdTipoUsuarioNavigation.TipoUsuario == "Paciente").ToList();
+            {
+                return ctx.ProntuarioPaciente.Include(x=>x.IdUsuarioNavigation).ToList();
             }
         }
     }

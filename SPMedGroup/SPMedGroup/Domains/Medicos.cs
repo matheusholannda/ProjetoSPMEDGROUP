@@ -17,9 +17,9 @@ namespace SPMedGroup.Domains
         public int? IdUsuario { get; set; }
         public int? IdClinica { get; set; }
 
-        public virtual Clinica IdClinicaNavigation { get; set; }
-        public virtual Especialidades IdEspecialidadeNavigation { get; set; }
-        public virtual Usuarios IdUsuarioNavigation { get; set; }
-        public virtual ICollection<Consultas> Consultas { get; set; }
+        public Clinica IdClinicaNavigation { get; set; }
+        public Especialidades IdEspecialidadeNavigation { get; set; }
+        public Usuarios IdUsuarioNavigation { get; set; }
+        public ICollection<Consultas> Consultas { get; set; }
     }
 }

@@ -11,15 +11,21 @@ export default class Cadastrar extends Component {
             prontuario: '',
             medico: '',
             data: '',
+            hora: '',
+            dataConsulta: '',
             desc: '',
-            situacao: 3,
+            situacao: 1,
             listaMedicos: [],
             listaPacientes: []
         }
     }
 
     buscarMedicos() {
-        fetch('http://localhost:5000/api/Consultas/', {
+        fetch('http://192.168.3.129:5000/api/Usuarios/ListarMedico', {
+            headers: {
+                'Authorization': 'Bearer ' + token,
+                'Content-Type': 'application/json'
+            }
         })
             .then(resposta => resposta.json())
             .then(data => this.setState({ listaMedicos: data }))
@@ -27,7 +33,11 @@ export default class Cadastrar extends Component {
     }
 
     buscarPacientes() {
-        fetch('http://localhost:5000/api/Consultas/', {
+        fetch('http://192.168.3.129:5000/api/Usuarios/ListarPaciente', {
+            headers: {
+                'Authorization': 'Bearer ' + token,
+                'Content-Type': 'application/json'
+            }
         })
             .then(resposta => resposta.json())
             .then(data => this.setState({ listaPacientes: data }))
@@ -35,7 +45,7 @@ export default class Cadastrar extends Component {
     }
 
     buscarConsultas() {
-        fetch('http://localhost:5000/api/Consultas/', {
+        fetch('http://192.168.3.129:5000/api/Consultas/', {
             headers: {
                 'Authorization': 'Bearer ' + token,
                 'Content-Type': 'application/json'
@@ -52,12 +62,12 @@ export default class Cadastrar extends Component {
         let consulta = {
             IdProntuario: this.state.prontuario,
             IdMedico: this.state.medico,
-            DataConsulta: this.state.data,
-            Descricao: null,
+            DataConsulta: this.state.data + "T" + this.state.hora,
+            Descricao: this.state.desc,
             IdTipoSituacao: this.state.situacao
         };
 
-        fetch('http://localhost:5000/api/Consultas/', {
+        fetch('http://192.168.3.129:5000/api/Consultas/', {
             method: 'POST',
             body: JSON.stringify(consulta),
             headers: {
@@ -65,71 +75,94 @@ export default class Cadastrar extends Component {
                 'Authorization': 'Bearer ' + token
             }
         })
-            .then(resposta => console.log(resposta))
+            .then(resposta => {
+                console.log(resposta);
+                this.limparFormulario();
+            })
             .then(this.buscarConsultas())
             .catch(erro => console.log(erro))
     }
 
-    atualizaEstadoProntuario(event) {
-        this.setState({ prontuario: event.target.value })
+    limparFormulario(){
+        this.setState({
+            prontuario: '',
+            medico: '',
+            data: '',
+            hora: '',
+            desc: ''
+        })
     }
 
-    atualizaEstadoMedico(event) {
-        this.setState({ medico: event.target.value })
+    atualizaEstado(event) {
+        this.setState({ [event.target.name]: event.target.value });
     }
 
-    atualizaEstadoData(event) {
-        this.setState({ data: event.target.value })
-    }
-
-    atualizaEstadoDescricao(event) {
-        this.setState({ desc: event.target.value })
+    componentDidMount() {
+        this.buscarConsultas();
+        this.buscarPacientes();
+        this.buscarMedicos();
     }
 
     render() {
+        var that = this
         return (
-
             <div className="cadastro">
                 <h1>Cadastrar Consulta</h1>
                 <form className="formAll" onSubmit={this.cadastrarConsulta.bind(this)}>
                     <div className="formLeft">
-                        <input
-                            type="text"
+
+                        <select
+                            name="prontuario"
                             value={this.state.prontuario}
-                            onChange={this.atualizaEstadoProntuario.bind(this)}
-                            placeholder="Prontuário"
-                        />
-                        {/* <select
-                        value={this.state.prontuario}
-                        onChange={this.atualizaEstadoProntuario.bind(this)}>
+                            onChange={this.atualizaEstado.bind(this)}>
                             <option>Selecione um paciente</option>
                             {
                                 this.state.listaPacientes.map(function (element) {
+                                    return (
+                                        <option value={element.id} key={element.id}>{element.idUsuarioNavigation.nome}</option>
+                                    );
+                                })
+                            }
+                        </select>
+
+                        <select
+                            name="medico"
+                            value={this.state.medico}
+                            onChange={this.atualizaEstado.bind(this)}>
+                            <option>Selecione um médico</option>
+                            {
+                                this.state.listaMedicos.map(function (element) {
                                     return (
                                         <option value={element.id} key={element.id}>{element.nome}</option>
                                     );
                                 })
                             }
-                        </select> */}
-                        <input
-                            type="text"
-                            value={this.state.medico}
-                            onChange={this.atualizaEstadoMedico.bind(this)}
-                            placeholder="Médico"
-                        />
+                        </select>
+
                         <input
                             type="date"
+                            name="data"
                             value={this.state.data}
-                            onChange={this.atualizaEstadoData.bind(this)}
+                            onChange={this.atualizaEstado.bind(this)}
                         />
                     </div>
                     <div className="formRight">
+
+                        <input
+                            type="time"
+                            name="hora"
+                            value={this.state.hora}
+                            onChange={this.atualizaEstado.bind(this)}
+                        />
+
                         <input
                             type="text"
+                            name="desc"
                             value={this.state.desc}
-                            onChange={this.atualizaEstadoDescricao.bind(this)}
+                            onChange={this.atualizaEstado.bind(this)}
                             placeholder="Descrição"
                         />
+
                         <button
                             type="submit"
                             className="RightBtn"
@@ -138,6 +171,39 @@ export default class Cadastrar extends Component {
                                             </button>
                     </div>
                 </form>
+
+                <h2>Consultas</h2>
+                <div className="listagem">
+                    <table id="tabela-lista">
+                        <thead>
+                            <tr>
+                                <th>#</th>
+                                <th>Prontuario</th>
+                                <th>Medico</th>
+                                <th>Data da Consulta</th>
+                                <th>Observações</th>
+                                <th>Situação da Consulta</th>
+                            </tr>
+                        </thead>
+
+                        <tbody>
+                            {
+                                that.state.lista.map(consulta => {
+                                    return (
+                                        <tr key={consulta.id}>
+                                            <td>{consulta.id}</td>
+                                            <td>{consulta.idProntuarioNavigation.idUsuarioNavigation.nome}</td>
+                                            <td>{consulta.idMedicoNavigation.nome}</td>
+                                            <td>{consulta.dataConsulta}</td>
+                                            <td>{consulta.descricao}</td>
+                                            <td>{consulta.idTipoSituacaoNavigation.situacao}</td>
+                                        </tr>
+                                    );
+                                })
+                            }
+                        </tbody>
+                    </table>
+                </div>
             </div>
         );
     }

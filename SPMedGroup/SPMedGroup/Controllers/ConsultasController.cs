@@ -105,5 +105,24 @@ namespace SPMedGroup.Controllers
                 return BadRequest(ex.Message);
             }
         }
+
+        [Authorize(Roles = "MEDICO")]
+        [HttpGet("buscarPorId")]
+        public IActionResult BuscarPorId(Consultas consulta)
+        {
+            try
+            {
+                Consultas consultaP = ConsultaRepository.BuscarPorId(consulta.Id);
+                if (consultaP == null)
+                {
+                    return NotFound();
+                }
+                return Ok(consultaP);
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
+        }
     }
 }

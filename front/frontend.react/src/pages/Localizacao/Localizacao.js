@@ -1,19 +1,24 @@
 import React, { Component } from 'react';
-import exit from '../../assets/images/enter.png';
-import './MenuConsultas.css';
-import Cadastro from '../../components/CadastroConsulta/Cadastro';
-import Atualiza from '../../components/AtualizarConsulta/Atualiza';
-import jwt_decode from 'jwt-decode';
+import GoogleMapReact from 'google-map-react';
 import { sair } from '../../services/auth';
 import { Link } from 'react-router-dom';
+import exit from '../../assets/images/enter.png';
 
-export default class Menu extends Component {
+
+const AnyReactComponent = ({ text }) => <div>{text}</div>;
+
+export default class SimpleMap extends Component {
+    static defaultProps = {
+        center: {
+            lat: 59.95,
+            lng: 30.33
+        },
+        zoom: 11
+    };
 
     render() {
-        document.title = 'SPMedGroup'
-        let token = localStorage.getItem("user-spmedgroup");
-        var decode = jwt_decode(token);
         return (
+            // Important! Always set the container height explicitly
             <div>
                 <div className="toolbar"><Link onClick={sair} to='/'><img src={exit} alt="Sair da Página" /></Link></div>
                 <div className="info">
@@ -31,11 +36,18 @@ export default class Menu extends Component {
                         </ul>
                     </div>
                     <div className="dados">
-                        <section className="cadastroListagem">
-
-                            {decode.Permissao == "ADMIN" ? (<Cadastro />) : <div></div>}
-                            {decode.Permissao == "MEDICO" ? (<Atualiza />) : <div></div>}
-                        </section>
+                        <div style={{ height: '80vh', width: '80%' }} className="mapa">
+                            <GoogleMapReact
+                                defaultCenter={this.props.center}
+                                defaultZoom={this.props.zoom}
+                            >
+                                <AnyReactComponent
+                                    lat={59.955413}
+                                    lng={30.337844}
+                                    text="My Marker"
+                                />
+                            </GoogleMapReact>
+                        </div>
                     </div>
                 </div>
             </div>

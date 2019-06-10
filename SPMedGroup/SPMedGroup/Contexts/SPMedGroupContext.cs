@@ -28,8 +28,8 @@ namespace SPMedGroup.Domains
         {
             if (!optionsBuilder.IsConfigured)
             {
-                
-                optionsBuilder.UseSqlServer("Data Source=.\\SqlExpress;Initial Catalog=SENAI_SPMEDGROUP;User id=sa;Password=132");
+#warning To protect potentially sensitive information in your connection string, you should move it out of source code. See http://go.microsoft.com/fwlink/?LinkId=723263 for guidance on storing connection strings.
+                optionsBuilder.UseSqlServer("Data Source=.\\SqlExpress; Initial Catalog=SENAI_SPMEDGROUP;user id=sa;password=132");
             }
         }
 
@@ -76,7 +76,7 @@ namespace SPMedGroup.Domains
 
                 entity.Property(e => e.DataConsulta)
                     .HasColumnName("DATA_CONSULTA")
-                    .HasColumnType("date");
+                    .HasColumnType("datetime");
 
                 entity.Property(e => e.Descricao)
                     .HasColumnName("DESCRICAO")

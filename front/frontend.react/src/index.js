@@ -3,6 +3,7 @@ import ReactDOM from 'react-dom';
 import './index.css'; 
 import App from './pages/Login/App';
 import Menu from './pages/MenuConsultas/MenuConsultas';
+import Localizacao from './pages/Localizacao/Localizacao';
 import {Route, BrowserRouter as Router, Switch, Redirect} from 'react-router-dom';
 import { usuarioAutorizado } from './services/auth';
 import * as serviceWorker from './serviceWorker';
@@ -22,6 +23,7 @@ const rotas = (
             <Switch>
                 <Route exact path="/" component={App}/>
                 <Permissao path="/menu" component={Menu}/>
+                <Route exact path="/localizacao" component={Localizacao}/>
             </Switch>
         </div>
     </Router>

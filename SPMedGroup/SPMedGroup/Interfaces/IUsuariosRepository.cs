@@ -9,6 +9,7 @@ namespace SPMedGroup.Interfaces
         void CadastrarProntuario(ProntuarioPaciente prontuario);
         Usuarios BuscarPorEmailSenha(string email, string senha);
         List<Medicos> ListarMedicos();
-        List<Usuarios> ListarPacientes();
+        //List<Usuarios> ListarPacientes();
+        List<ProntuarioPaciente> ListarPacientes();
     }
 }

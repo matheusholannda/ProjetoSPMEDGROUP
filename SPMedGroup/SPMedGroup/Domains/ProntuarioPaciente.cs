@@ -18,7 +18,7 @@ namespace SPMedGroup.Domains
         public string Cpf { get; set; }
         public string Endereco { get; set; }
 
-        public virtual Usuarios IdUsuarioNavigation { get; set; }
-        public virtual ICollection<Consultas> Consultas { get; set; }
+        public Usuarios IdUsuarioNavigation { get; set; }
+        public ICollection<Consultas> Consultas { get; set; }
     }
 }
